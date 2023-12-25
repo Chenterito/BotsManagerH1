@@ -44,16 +44,19 @@ monitorBots()
 		}
 	}
 	
-	for(;;)
+	if(botsToFill > 0)
 	{
-		while(botCount() + playerCount() < botsToFill)
+		for(;;)
 		{
-			spawnBotswrapper(1);
-			wait 0.5;			
+			while(botCount() + playerCount() < botsToFill)
+			{
+				spawnBotswrapper(1);
+				wait 0.5;			
+			}
+			wait 3;
+			if( botCount() + playerCount() > botsToFill && botCount() > 0)
+				kickBot();
 		}
-		wait 3;
-		if( botCount() + playerCount() > botsToFill && botCount() > 0)
-			kickBot();
 	}
 }
 
