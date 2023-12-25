@@ -44,13 +44,11 @@ monitorBots()
 		}
 	}
 	
-	printLn("Monitor bots");
 	for(;;)
 	{
 		while(botCount() + playerCount() < botsToFill)
 		{
 			spawnBotswrapper(1);
-			printLn("Spawing bot");
 			wait 0.5;			
 		}
 		wait 3;
@@ -73,7 +71,6 @@ onPlayerConnect()
 		{
 			player waittill("spawned_player");
 			kickBot();
-			printLn("Pateando bot");
 		}
     }
 }
