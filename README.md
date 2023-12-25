@@ -3,7 +3,7 @@ Script to manage bots on the server, through dvars in the CFG file you establish
 
 # How to implement.
 
-Copy the folder ""randomMapsH1" into "h1-mod\scripts" of your server folder.
+Copy the script ""MonitorBotsH1" into "h1-mod\scripts" of your server folder.
 
 Set that dvars in your server configuration file with the values you want.
 
