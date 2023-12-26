@@ -16,10 +16,15 @@
 
 init()
 {
+	if(isroundbased() && !isfirstround())
+		return;
+	
 	SetDvarIfNotInizialized("bots_manage_add", 8);
 	SetDvarIfNotInizialized("bots_manage_fill", 10);
 	thread monitorBots();
 	thread onPlayerConnect();
+	printLn("Script Loaded: BotManager");
+
 }
 
 monitorBots()
@@ -44,19 +49,18 @@ monitorBots()
 		thread teamBots();
 	}
 	
-	if(botsToFill > 0)
+	printLn("Monitor bots");
+	for(;;)
 	{
-		for(;;)
+		while(botCount() + playerCount() < botsToFill)
 		{
-			while(botCount() + playerCount() < botsToFill)
-			{
-				spawnBotswrapper(1);
-				wait 0.5;			
-			}
-			wait 3;
-			if( botCount() + playerCount() > botsToFill && botCount() > 0)
-				kickBot();
+			spawnBotswrapper(1);
+			printLn("Spawing bot");
+			wait 0.5;			
 		}
+		wait 3;
+		if( botCount() + playerCount() > botsToFill && botCount() > 0)
+			kickBot();
 	}
 }
 
@@ -74,6 +78,7 @@ onPlayerConnect()
 		{
 			player waittill("spawned_player");
 			kickBot();
+			printLn("Pateando bot");
 		}
     }
 }
