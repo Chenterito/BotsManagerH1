@@ -20,7 +20,6 @@ init()
 	SetDvarIfNotInizialized("bots_manage_fill", 10);
 	thread monitorBots();
 	thread onPlayerConnect();
-	thread teamBots();
 }
 
 monitorBots()
@@ -42,6 +41,7 @@ monitorBots()
 			spawnBotswrapper(1);
 			wait 0.25;	
 		}
+		thread teamBots();
 	}
 	
 	if(botsToFill > 0)
@@ -254,8 +254,6 @@ teamBots_loop()
 teamBots()
 {
 	level endon("game_ended");
-
-	wait 30; // Time to start monitor
 	for ( ;; )
 	{
 		wait 1.5;
